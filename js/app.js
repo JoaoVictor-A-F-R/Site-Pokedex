@@ -1,6 +1,6 @@
 const site = 'https://pokeapi.co/api/v2/pokemon'
 const botao = document.querySelector('.botao')
-let busca = site + '/' +document.querySelector('.texto').value
+const texto = document.querySelector('.texto')
 
 
 function buscaPokemon(value){
@@ -9,13 +9,14 @@ function buscaPokemon(value){
             return response.json()
         })
         .then((data) =>{
+            console.log(data)
             var tagNome = document.createElement('p')
             var nome = document.createTextNode(data['name'])
             var img = document.createElement('img')
             img.src = data['sprites']['front_default']
             tagNome.appendChild(nome)
-            document.querySelector('.card').appendChild(tagNome)
             document.querySelector('.card').appendChild(img)
+            document.querySelector('.card').appendChild(tagNome)
         })
         .catch((erro) => {
             return alert('Erro imgPokemon: ' + erro)
@@ -32,7 +33,6 @@ function buscaInicial(valorInicial, valorFinal){
     })
     .then((data) => {
         for(i = inicio; i < fim; i++){
-            console.log(data['results'][i]['url'])
             buscaPokemon(data['results'][i]['url'])
         }
     })
@@ -41,4 +41,38 @@ function buscaInicial(valorInicial, valorFinal){
     })
 }
 document.addEventListener('DOMContentLoaded', buscaInicial(0, 20))
-// botao.addEventListener('click', buscaPokemon(busca))
+
+botao.addEventListener('click', ()=>{
+    if(texto.value != ''){
+        let url = site + '/' + texto.value
+        teste.forEach(element => {
+            element.style.display = 'none'
+        });
+        buscaPokemon(url)
+    }else{
+        let teste = document.querySelectorAll('.card > p, img')
+        teste.forEach(element => {
+            element.style.display = 'none'
+        });
+        buscaInicial(0, 20)
+    }
+})
+
+texto.addEventListener('keydown', (event) => {
+    if (event.code === 'Enter'){
+        if(texto.value != ''){
+            let url = site + '/' + texto.value
+            let teste = document.querySelectorAll('.card > p, img')
+            teste.forEach(element => {
+                element.style.display = 'none'
+            });
+            buscaPokemon(url)
+        }else{
+            let teste = document.querySelectorAll('.card > p, img')
+            teste.forEach(element => {
+                element.style.display = 'none'
+            });
+            buscaInicial(0, 20)
+        }
+    }
+})
