@@ -6,7 +6,6 @@ const botaoMais = document.querySelector('.maisPkm')
 let inBusca = 0
 let fmBusca = 20
 
-
 function buscaPokemon(value){
     fetch(value)
         .then((response) => {
@@ -32,7 +31,7 @@ function buscaPokemon(value){
             img.src = data['sprites']['front_default']
 
             var tagNome = document.createElement('p')
-            var nome = document.createTextNode(data['name'])
+            var nome = document.createTextNode(data['name'].charAt(0).toUpperCase() + data['name'].slice(1))
             tagNome.appendChild(nome)
 
             var div2 = document.createElement('div')
@@ -50,10 +49,22 @@ function buscaPokemon(value){
                 div2.appendChild(tipo2)
             }
 
+            var div3 = document.createElement('div')
+            var peso = document.createElement('p')
+            var altura = document.createElement('p')
+            var vlPeso = document.createTextNode('Peso: ' + data['weight'] / 10 +' kg')
+            var vlAltura = document.createTextNode('Altura: ' + data['height'] / 10 + ' m')
+            peso.appendChild(vlPeso)
+            altura.appendChild(vlAltura)
+            div3.appendChild(peso)
+            div3.appendChild(altura)
+            div3.classList.add('infoPokemon')
+
             div.appendChild(tagId)
             div.appendChild(img)
             div.appendChild(tagNome)
             div.appendChild(div2)
+            div.appendChild(div3)
             div.classList.add('card')
             container.appendChild(div)
         })
@@ -124,4 +135,36 @@ botaoMais.addEventListener('click', () => {
     inBusca += 20
     fmBusca += 20
     buscaInicial(inBusca, fmBusca)
+})
+
+var botaoTipo = document.querySelectorAll('.tipos button')
+botaoTipo.forEach(element => {
+    element.style.backgroundColor = 'var('+ element.value +')'
+    element.addEventListener('mouseenter', () =>{
+        element.style.transform = 'scale(1.1)'
+        element.style.boxShadow = '0 0 20px 0px var('+ element.value +')'
+    })
+    element.addEventListener('mouseleave', () =>{
+        element.style.boxShadow = 'none'
+        element.style.transform = 'none'
+    })
+    element.addEventListener('click',() => {
+        fetch('https://pokeapi.co/api/v2/type/'+ element.value.slice(2)+'')
+            .then((response) =>{
+                return response.json()
+            })
+            .then((data) => {
+                data['pokemon'].forEach(element => {
+                    let teste = document.querySelectorAll('.card')
+                    teste.forEach(element => {
+                        element.style.display = 'none'
+                    });
+                    botaoMais.style.display = 'none'
+                    buscaPokemon(element['pokemon']['url'])
+                });
+            })
+            .catch((erro) => {
+                return alert('Erro buscaPorTipo: ' + erro)
+            })
+        })
 })

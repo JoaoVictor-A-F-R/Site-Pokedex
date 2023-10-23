@@ -1,22 +1,22 @@
 :root{
-    --grass: #9bcc50;
-    --poison: #b97fc9;
-    --water: #4592c4;
-    --fire: #fd7d24;
+    --grass: #2db30c;
+    --poison: #ac53c5;
+    --water: #0378fd;
+    --fire: #e42209;
     --flying: #3dc7ef;
-    --bug: #729f3f;
-    --drag: #53a4cf;
-    --electric: #eed535;
-    --ice: #51c4e7;
+    --bug: #81c731;
+    --dragon: #033196;
+    --electric: #d1bd04;
+    --ice: #00c3ff;
     --psychic: #f366b9;
-    --steel: #9eb7b8;
+    --steel: #c0c0c0;
     --rock: #a38c21;
-    --ground: #f7de3f;
-    --ghost: #7b62a3;
-    --normal: #b1b1b1;
-    --fairy: #fdb9e9;
-    --fighting: #d56723;
-    --dark: #707070;
+    --ground: #8a6b08;
+    --ghost: #382557;
+    --normal: #888;
+    --fairy: #eb9fd4;
+    --fighting: #fd6500;
+    --dark: #333;
 }
 *,::after,::before{
     margin: 0;
@@ -67,31 +67,35 @@ body{
 }
 .pesquisa .botao{
     width: 45px;
-    background-color: transparent;
+    background-color: #fff;
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
     border: none;
+
+    &:hover{
+        background-color: #1d65c2;
+    }
 }
 .botao i{
-    color: #aaa;
+    color: #111;
     font-size: 20px;
 }
 .tipos{
     display: grid;
     grid-template-columns: repeat(9,1fr);
-    gap: 1rem;
+    gap: 1.5rem 1.75rem;
     max-width: 1280px;
 }
 .tipos button{
+    font-size: 18px;
     text-align: center;
     color: #fff;
-    max-width: 100px;
-    background-color: #333;
+    min-width: 100px;
     padding: 7.5px;
     border: none;
     border-radius: 5px;
-
-    &:hover{
-        box-shadow: 0px 0px 15px 0px #000;
-    }
+    cursor: pointer;
+    transition: 0.25s ease;
 }
 .contPkm{
     display: grid;
@@ -102,31 +106,31 @@ body{
 .card{
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
 
     width: 270px;
-    height: 380px;
-    padding: 15px 0;
-    background-color: #000;
+    height: 450px;
+    background: url('../imagens/pokeball.jpg');
     transition: 0.5s 0.4s ease-in;
+    padding: 10px;
+    cursor: pointer;
 }
 .card p:nth-child(3){
-    color: #eee;
+    color: #000;
+    text-align: center;
     font-size: 24px;
 }
 .card p{
     width: 95%;
-    margin-left: 5%;
     font-size: 20px;
-    color: #999;
+    color: #fff;
 }
 .card div{
     display: flex;
     width: 100%;
     justify-content: center;
     gap: 20px;
-    margin-top: 10px;
 }
 .card div p{
     max-width: 90px;
@@ -139,17 +143,29 @@ body{
     border-radius: 5px;
 }
 .card img{
-    width: 175px;
-    margin: 40px;
+    width: 225px;
+}
+.infoPokemon{
+    justify-content: space-between !important;
+    margin: 0 !important;
+}
+.infoPokemon p{
+    max-width: 120px !important;
+    min-width: 100px !important;
+    text-align: start !important;
+    color: #000 !important;
+    font-size: 16px !important;
 }
 .maisPkm{
-    font-size: 24px;
+    font-size: 20px;
     color: #eee;
-    padding: 15px;
+    padding: 1rem;
     border-radius: 5px;
     background-color: #db5a0e;
     border: none;
+    transition: 0.25s ease;
     &:hover{
-        box-shadow: 0px 0px 20px 0px #db5a0e;
+        box-shadow: 0px 0px 15px 0px #db5a0e;
+        transform: scale(1.1);
     }
 }
