@@ -104,57 +104,97 @@ body{
 
 }
 .card{
+    width: 270px;
+    height: 480px;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: .5s ease;
+}
+.card.flip{
+    transform: rotateY(180deg);
+}
+.card img{
+    width: 200px;
+}
+.frente,.verso{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-
-    width: 270px;
-    height: 450px;
-    background: url('../imagens/pokeball.jpg');
-    transition: 0.5s 0.4s ease-in;
-    padding: 10px;
-    cursor: pointer;
 }
-.card p:nth-child(3){
-    color: #000;
-    text-align: center;
+.frente div:nth-child(1), .verso div:nth-child(1){
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+    height: 47.5%;
+    background-color: #cf1515;
+    border-radius: 10px;
+    padding-top: 10px;
+}
+.frente div:nth-child(1) p, .verso div:nth-child(1) p{
+    color: #fff;
     font-size: 24px;
 }
-.card p{
-    width: 95%;
-    font-size: 20px;
-    color: #fff;
-}
-.card div{
+.frente div:nth-child(2), .verso div:nth-child(2){
     display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
     width: 100%;
-    justify-content: center;
-    gap: 20px;
+    height: 47.5%;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 10px 0;
 }
-.card div p{
-    max-width: 90px;
-    min-width: 70px;
+.frente div:nth-child(2) p, .verso div:nth-child(2) p{
+    min-width: 120px;
+    text-align: center;
+    color: #000;
+    font-size: 20px;
+}
+.styleTipo{
     font-size: 20px;
     text-align: center;
     margin: 0;
-    color: #fff;
-    padding: 3px 0;
-    border-radius: 5px;
+    color: #fff !important;
+    padding: 5px 0;
+    opacity: 0.90;
+    border-radius: 15px;
+
+    &:hover{
+        opacity: 1;
+    }
 }
-.card img{
-    width: 225px;
+.verso{
+    transform: rotateY(180deg);
+}
+.verso div div{
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr);
+    
+}
+.flip .verso div:nth-child(2){
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 47.5%;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 10px 0;
 }
 .infoPokemon{
-    justify-content: space-between !important;
-    margin: 0 !important;
-}
-.infoPokemon p{
-    max-width: 120px !important;
-    min-width: 100px !important;
-    text-align: start !important;
-    color: #000 !important;
-    font-size: 16px !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    gap: 20px 0px
 }
 .maisPkm{
     font-size: 20px;

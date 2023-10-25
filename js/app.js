@@ -13,60 +13,127 @@ function buscaPokemon(value){
         })
         .then((data) =>{
             console.log(data)
-            var div = document.createElement('div')
-            
-            var tagId = document.createElement('p')
-            if(data['id'] < 10){
-                var id = document.createTextNode("#000" + data['id'])
-            }else if(data['id'] < 100){
-                var id = document.createTextNode("#00" + data['id'])
-            }else if(data['id'] < 1000){
-                var id = document.createTextNode("#0" + data['id'])
-            }else{
-                var id = document.createTextNode("#"+data['id'])
-            }
-            tagId.appendChild(id)
+            var card = document.createElement('div')
+            card.classList.add('card')
+            // frente createElement
+            var frente = document.createElement('div')
 
+            var div1 = document.createElement('div')
+            var id = document.createElement('p')
+            if(data['id'] < 10){
+                var idPkm = document.createTextNode("#000" + data['id'])
+            }else if(data['id'] < 100){
+                var idPkm = document.createTextNode("#00" + data['id'])
+            }else if(data['id'] < 1000){
+                var idPkm = document.createTextNode("#0" + data['id'])
+            }else{
+                var idPkm = document.createTextNode("#"+data['id'])
+            }
             var img = document.createElement('img')
             img.src = data['sprites']['front_default']
-
-            var tagNome = document.createElement('p')
-            var nome = document.createTextNode(data['name'].charAt(0).toUpperCase() + data['name'].slice(1))
-            tagNome.appendChild(nome)
-
+            id.appendChild(idPkm)
+            div1.appendChild(id)
+            div1.appendChild(img)
+            
             var div2 = document.createElement('div')
+            var nome = document.createElement('p')
+            var nomePkm = document.createTextNode(data['name'])
+            nome.appendChild(nomePkm)
+            var div3 = document.createElement('div')
+            div3.classList.add('infoPokemon')
             var tipo1 = document.createElement('p')
+            tipo1.classList.add('styleTipo')
             var tipagem1 = document.createTextNode(data['types'][0]['type']['name'])
             tipo1.appendChild(tipagem1)
             tipo1.style.backgroundColor = 'var(--'+ data['types'][0]['type']['name'] +')'
-            div2.appendChild(tipo1)
-
+            div3.appendChild(tipo1)
             if(data['types']['length'] == 2){
                 var tipo2 = document.createElement('p')
                 var tipagem2 = document.createTextNode(data['types'][1]['type']['name'])
                 tipo2.appendChild(tipagem2)
+                tipo2.classList.add('styleTipo')
                 tipo2.style.backgroundColor = 'var(--'+ data['types'][1]['type']['name'] +')'
-                div2.appendChild(tipo2)
+                div3.appendChild(tipo2)
+            }else{
+                tipo1.style.gridColumnStart = 1
+                tipo1.style.gridColumnEnd = 3
             }
-
-            var div3 = document.createElement('div')
             var peso = document.createElement('p')
             var altura = document.createElement('p')
             var vlPeso = document.createTextNode('Peso: ' + data['weight'] / 10 +' kg')
             var vlAltura = document.createTextNode('Altura: ' + data['height'] / 10 + ' m')
             peso.appendChild(vlPeso)
             altura.appendChild(vlAltura)
+
             div3.appendChild(peso)
             div3.appendChild(altura)
-            div3.classList.add('infoPokemon')
+            div2.appendChild(nome)
+            div2.appendChild(div3)
 
-            div.appendChild(tagId)
-            div.appendChild(img)
-            div.appendChild(tagNome)
-            div.appendChild(div2)
-            div.appendChild(div3)
-            div.classList.add('card')
-            container.appendChild(div)
+            frente.appendChild(div1)
+            frente.appendChild(div2)
+            frente.classList.add('frente')
+            
+            // verso createElement 
+            var verso = document.createElement('div')
+            verso.classList.add('verso')
+
+            card.appendChild(frente)
+            container.appendChild(card)
+            // var div = document.createElement('div')
+            
+            // var tagId = document.createElement('p')
+            // if(data['id'] < 10){
+            //     var id = document.createTextNode("#000" + data['id'])
+            // }else if(data['id'] < 100){
+            //     var id = document.createTextNode("#00" + data['id'])
+            // }else if(data['id'] < 1000){
+            //     var id = document.createTextNode("#0" + data['id'])
+            // }else{
+            //     var id = document.createTextNode("#"+data['id'])
+            // }
+            // tagId.appendChild(id)
+
+            // var img = document.createElement('img')
+            // img.src = data['sprites']['front_default']
+
+            // var tagNome = document.createElement('p')
+            // var nome = document.createTextNode(data['name'].charAt(0).toUpperCase() + data['name'].slice(1))
+            // tagNome.appendChild(nome)
+
+            // var div2 = document.createElement('div')
+            // var tipo1 = document.createElement('p')
+            // var tipagem1 = document.createTextNode(data['types'][0]['type']['name'])
+            // tipo1.appendChild(tipagem1)
+            // tipo1.style.backgroundColor = 'var(--'+ data['types'][0]['type']['name'] +')'
+            // div2.appendChild(tipo1)
+
+            // if(data['types']['length'] == 2){
+            //     var tipo2 = document.createElement('p')
+            //     var tipagem2 = document.createTextNode(data['types'][1]['type']['name'])
+            //     tipo2.appendChild(tipagem2)
+            //     tipo2.style.backgroundColor = 'var(--'+ data['types'][1]['type']['name'] +')'
+            //     div2.appendChild(tipo2)
+            // }
+
+            // var div3 = document.createElement('div')
+            // var peso = document.createElement('p')
+            // var altura = document.createElement('p')
+            // var vlPeso = document.createTextNode('Peso: ' + data['weight'] / 10 +' kg')
+            // var vlAltura = document.createTextNode('Altura: ' + data['height'] / 10 + ' m')
+            // peso.appendChild(vlPeso)
+            // altura.appendChild(vlAltura)
+            // div3.appendChild(peso)
+            // div3.appendChild(altura)
+            // div3.classList.add('infoPokemon')
+
+            // div.appendChild(tagId)
+            // div.appendChild(img)
+            // div.appendChild(tagNome)
+            // div.appendChild(div2)
+            // div.appendChild(div3)
+            // div.classList.add('card')
+            // container.appendChild(div)
         })
         .catch((erro) => {
             return console.log('Erro imgPokemon: ' + erro)
@@ -168,3 +235,8 @@ botaoTipo.forEach(element => {
             })
         })
 })
+
+function flip(){
+    const card = document.querySelector('.card')
+    card.classList.toggle('flip')
+}
