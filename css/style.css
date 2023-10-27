@@ -116,53 +116,57 @@ body{
 .card img{
     width: 200px;
 }
-.frente,.verso{
+.frente, .verso{
     position: absolute;
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 1%;
     align-items: center;
 }
-.frente div:nth-child(1), .verso div:nth-child(1){
+.top, .bot{
     display: flex;
     flex-direction: column;
-    gap: 10px;
     align-items: center;
+    justify-content: space-evenly;
+
     width: 100%;
     height: 49.5%;
-    background-color: #cf1515;
-    border-radius: 10px;
-    padding-top: 10px;
+    border-radius: 15px;
 }
-.frente div:nth-child(1) p, .verso div:nth-child(1) p{
-    color: #fff;
+.top{
+    background-color: red;
+}
+.top p{
+    font-size: 20px;
+    position: absolute;
+    top: 5px;
+    left: 15px;
+    color: #eee;
+}
+.bot{
+    background-color: #fff;
+}
+.bot p{
     font-size: 24px;
 }
-.frente div:nth-child(2), .verso div:nth-child(2){
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    height: 49.5%;
-    background-color: #f0f0f0;
-    border-radius: 10px;
-    padding: 10px 0;
+.infoPokemon{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 10px
 }
-.frente div:nth-child(2) p, .verso div:nth-child(2) p{
-    min-width: 120px;
+.infoPokemon p{
+    font-size: 19px;
+    min-width: 110px;
     text-align: center;
-    color: #000;
-    font-size: 20px;
 }
-.styleTipo{
-    font-size: 20px;
-    text-align: center;
+.tipo{
+    font-size: 20px !important;
+    background-color: #000;
     margin: 0;
-    color: #fff !important;
+    color: #fff;
     padding: 5px 0;
     opacity: 0.90;
     border-radius: 15px;
@@ -174,27 +178,28 @@ body{
 .verso{
     transform: rotateY(180deg);
 }
-.verso div div{
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr);
-    
+.verso .top p:nth-child(2){
+    position: initial;
 }
-.flip .verso div:nth-child(2){
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+.status{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
     align-items: center;
-    width: 100%;
-    height: 47.5%;
-    background-color: #f0f0f0;
-    border-radius: 10px;
-    padding: 10px 0;
+    gap: 3px 15px;
 }
-.infoPokemon{
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr);
-    justify-items: center;
-    gap: 20px 0px
+.status p{
+    font-size: 18px;
+    color: #2db30c;
+}
+.statusBar{
+    background-color: #2db30c;
+    border-radius: 10px;
+    max-width: 140px;
+    width: 140px;
+    height: 10px;
+}
+.statusBar2{
+    width: 100px;
 }
 .maisPkm{
     font-size: 20px;
