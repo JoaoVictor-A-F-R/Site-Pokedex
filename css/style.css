@@ -183,19 +183,19 @@ body{
 }
 .status{
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 2.5fr;
     align-items: center;
-    gap: 3px 15px;
+    gap: 3px 10px;
 }
 .status p{
     font-size: 18px;
-    color: #2db30c;
+    color: #444;
+    font-weight: 700;
 }
 .statusBar{
     background-color: #2db30c;
     border-radius: 10px;
-    max-width: 140px;
-    width: 140px;
+    max-width: 161px;
     height: 10px;
 }
 .statusBar2{

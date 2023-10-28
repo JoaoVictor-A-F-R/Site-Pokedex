@@ -1,242 +1,173 @@
-// const site = 'https://pokeapi.co/api/v2/pokemon'
-// const botao = document.querySelector('.botao')
-// const texto = document.querySelector('.texto')
-// const container = document.querySelector('.contPkm')
-// const botaoMais = document.querySelector('.maisPkm')
-// let inBusca = 0
-// let fmBusca = 20
+const pegarIdPokemon = async pokemons =>{
+    return pokemons.map(objeto => objeto.id)
+}
 
-// function buscaPokemon(value){
-//     fetch(value)
-//         .then((response) => {
-//             return response.json()
-//         })
-//         .then((data) =>{
-//             // console.log(data)
-//             var card = document.createElement('div')
-//             card.classList.add('card')
-//             // frente createElement
-//             var frente = document.createElement('div')
+const pegarNomePokemon = async pokemons =>{
+    return pokemons.map(objeto => objeto.name)
+}
 
-//             var div1 = document.createElement('div')
-//             var id = document.createElement('p')
-//             if(data['id'] < 10){
-//                 var idPkm = document.createTextNode("#000" + data['id'])
-//             }else if(data['id'] < 100){
-//                 var idPkm = document.createTextNode("#00" + data['id'])
-//             }else if(data['id'] < 1000){
-//                 var idPkm = document.createTextNode("#0" + data['id'])
-//             }else{
-//                 var idPkm = document.createTextNode("#"+data['id'])
-//             }
-//             var img = document.createElement('img')
-//             img.src = data['sprites']['front_default']
-//             id.appendChild(idPkm)
-//             div1.appendChild(id)
-//             div1.appendChild(img)
-            
-//             var div2 = document.createElement('div')
-//             var nome = document.createElement('p')
-//             nome.textContent = data['name'].charAt(0).toUpperCase() + data['name'].slice(1)
-//             var div3 = document.createElement('div')
-//             div3.classList.add('infoPokemon')
-//             var tipo1 = document.createElement('p')
-//             tipo1.classList.add('styleTipo')
-//             var tipagem1 = document.createTextNode(data['types'][0]['type']['name'])
-//             tipo1.appendChild(tipagem1)
-//             tipo1.style.backgroundColor = 'var(--'+ data['types'][0]['type']['name'] +')'
-//             div3.appendChild(tipo1)
-//             if(data['types']['length'] == 2){
-//                 var tipo2 = document.createElement('p')
-//                 var tipagem2 = document.createTextNode(data['types'][1]['type']['name'])
-//                 tipo2.appendChild(tipagem2)
-//                 tipo2.classList.add('styleTipo')
-//                 tipo2.style.backgroundColor = 'var(--'+ data['types'][1]['type']['name'] +')'
-//                 div3.appendChild(tipo2)
-//             }else{
-//                 tipo1.style.gridColumnStart = 1
-//                 tipo1.style.gridColumnEnd = 3
-//             }
-//             var peso = document.createElement('p')
-//             var altura = document.createElement('p')
-//             var vlPeso = document.createTextNode('Peso: ' + data['weight'] / 10 +' kg')
-//             var vlAltura = document.createTextNode('Altura: ' + data['height'] / 10 + ' m')
-//             peso.appendChild(vlPeso)
-//             altura.appendChild(vlAltura)
+const pegarTipoPokemon = async pokemons =>{
+    return pokemons.map(objeto => objeto.types.map(tipos => tipos.type.name))
+}
 
-//             div3.appendChild(peso)
-//             div3.appendChild(altura)
-//             div2.appendChild(nome)
-//             div2.appendChild(div3)
+const pegarAlturaPokemon = async pokemons =>{
+    const alturas = pokemons.map(objeto => objeto.height / 10)
+    return alturas
+}
 
-//             frente.appendChild(div1)
-//             frente.appendChild(div2)
-//             frente.classList.add('frente')
-            
-//             // verso createElement 
-//             var verso = document.createElement('div')
-//             verso.classList.add('verso')
-//             var div1Clone = div1.cloneNode(true)
-//             var nomeClone = nome.cloneNode(true)
-//             div1Clone.style.backgroundColor = 'var(--'+ data['types'][0]['type']['name'] +')'
-//             div1Clone.appendChild(nomeClone)
-//             verso.appendChild(div1Clone)
+const pegarPesoPokemon = async pokemons =>{
+    const pesos = pokemons.map(objeto => objeto.weight / 10)
+    return pesos
+}
 
-//             var div4 = document.createElement('div')
-//             var div5 = document.createElement('div')
-//             div5.classList.add('status')
-//             var div6 = document.createElement('div')
-//             div6.style.width = ''+data['stats'][3]['base_stat'] +'px'
-//             console.log(parseInt(data['stats'][0]['base_stat']))
-//             var status = document.createElement('p')
-//             status.textContent = 'STATUS'
-//             var vid = document.createElement('p')
-//             vid.textContent = 'VID ' + data['stats'][0]['base_stat']
-//             var atq = document.createElement('p')
-//             atq.textContent = 'ATQ ' + data['stats'][1]['base_stat']
-//             var def = document.createElement('p')
-//             def.textContent = 'DEF ' + data['stats'][2]['base_stat']
-//             var sp_atq = document.createElement('p')
-//             sp_atq.textContent = 'SPA ' + data['stats'][3]['base_stat']
-//             var sp_def = document.createElement('p')
-//             sp_def.textContent = 'SPD ' + data['stats'][4]['base_stat']
-//             var vel = document.createElement('p')
-//             vel.textContent = 'VEL ' + data['stats'][5]['base_stat']
-            
+const pegarStatusPokemon = async pokemons =>{
+    const todosStatus = pokemons.map(objeto => objeto.stats)
+    return todosStatus
+}
 
-//             div4.appendChild(status)
-//             div5.appendChild(vid)
-//             div5.appendChild(div6)
-//             div5.appendChild(atq)
-//             div5.appendChild(div6.cloneNode(true))
-//             div5.appendChild(def)
-//             div5.appendChild(div6.cloneNode(true))
-//             div5.appendChild(sp_atq)
-//             div5.appendChild(div6.cloneNode(true))
-//             div5.appendChild(sp_def)
-//             div5.appendChild(div6.cloneNode(true))
-//             div5.appendChild(vel)
-//             div5.appendChild(div6.cloneNode(true))
-//             div4.appendChild(div5)
-//             verso.appendChild(div4)
-//             card.appendChild(frente)
-//             card.appendChild(verso)
-//             container.appendChild(card)
-//         })
-//         .catch((erro) => {
-//             return console.log('Erro imgPokemon: ' + erro)
-//         })
-// }
 
-// function buscaInicial(valorInicial, valorFinal){
-//     let url = site + '?limit=10000&offset=0'
-//     let inicio = valorInicial
-//     let fim = valorFinal
-//     fetch(url)
-//     .then((response) =>{
-//         return response.json()
-//     })
-//     .then((data) => {
-//         for(i = inicio; i < fim; i++){
-//             buscaPokemon(data['results'][i]['url'])
-//         }
-//     })
-//     .catch((erro) => {
-//         return alert('Erro buscaInicial: ' + erro)
-//     })
-// }
+const filtroInfoPokemons = async () => {
+    try {
+        const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=20&offset=0')
+        if(!response.ok){
+            throw Error('Não foi possível obter dados da url')
+        }
 
-// document.addEventListener('DOMContentLoaded', buscaInicial(inBusca, fmBusca), setTimeout(flip, 500))
+        const {results: apiPokemonResultados} = await response.json()
+        const promises = apiPokemonResultados.map(results => fetch(results.url))
+        const responses = await Promise.allSettled(promises)
+        const fulfilled = responses.filter(responses => responses.status === 'fulfilled')
+        const pokePromises = fulfilled.map(urls => urls.value.json())
+        const pokemons = await Promise.all(pokePromises)
+        const arrPokemons = [await pegarIdPokemon(pokemons), 
+            await pegarNomePokemon(pokemons), 
+            await pegarTipoPokemon(pokemons), 
+            await pegarAlturaPokemon(pokemons), 
+            await pegarPesoPokemon(pokemons),
+            await pegarStatusPokemon(pokemons)]
+        return arrPokemons
 
-// botao.addEventListener('click', ()=>{
-//     if(texto.value != ''){
-//         let url = site + '/' + texto.value
-//         let teste = document.querySelectorAll('.card')
-//         teste.forEach(element => {
-//             container.removeChild(element)
-//         });
-//         botaoMais.style.display = 'none'
-//         buscaPokemon(url)
-//         setTimeout(flip, 500);
-//     }else{
-//         let teste = document.querySelectorAll('.card')
-//         teste.forEach(element => {
-//             container.removeChild(element)
-//         });
-//         buscaInicial(0, 20)
-//         setTimeout(flip, 500);
-//     }
-// })
+    } catch (error) {
+        console.log('algo deu erado', error)
+    }
+}
 
-// texto.addEventListener('keydown', (event) => {
-//     if (event.code === 'Enter'){
-//         if(texto.value != ''){
-//             let url = site + '/' + texto.value
-//             let teste = document.querySelectorAll('.card')
-//             teste.forEach(element => {
-//                 container.removeChild(element)
-//             });
-//             botaoMais.style.display = 'none'
-//             buscaPokemon(url)
-//             setTimeout(flip, 500);
-//         }else{
-//             let teste = document.querySelectorAll('.card')
-//             teste.forEach(element => {
-//                 container.removeChild(element)
-//             });
-//             buscaInicial(0, 20)
-//             setTimeout(flip, 500);
-//         }
-//     }
-// })
+const calculoStatus = valor =>{
+    return (100 * valor) / 161
+}
 
-// botaoMais.addEventListener('click', () => {
-//     inBusca += 20
-//     fmBusca += 20
-//     buscaInicial(inBusca, fmBusca)
-//     setTimeout(flip, 500);
-// })
+const renderPokemon = pokemons => {
+    const container = document.querySelector(".contPkm")
+    const fragmento = document.createDocumentFragment()
 
-// var botaoTipo = document.querySelectorAll('.tipos button')
-// botaoTipo.forEach(element => {
-//     element.style.backgroundColor = 'var('+ element.value +')'
-//     element.addEventListener('mouseenter', () =>{
-//         element.style.transform = 'scale(1.1)'
-//         element.style.boxShadow = '0 0 20px 0px var('+ element.value +')'
-//     })
-//     element.addEventListener('mouseleave', () =>{
-//         element.style.boxShadow = 'none'
-//         element.style.transform = 'none'
-//     })
-//     element.addEventListener('click',() => {
-//         fetch('https://pokeapi.co/api/v2/type/'+ element.value.slice(2)+'')
-//             .then((response) =>{
-//                 return response.json()
-//             })
-//             .then((data) => {
-//                 data['pokemon'].forEach(element => {
-//                     let teste = document.querySelectorAll('.card')
-//                     teste.forEach(element => {
-//                         container.removeChild(element)
-//                     });
-//                     botaoMais.style.display = 'none'
-//                     buscaPokemon(element['pokemon']['url'])
-//                 });
-//             })
-//             .catch((erro) => {
-//                 return alert('Erro buscaPorTipo: ' + erro)
-//             })
-//         setTimeout(flip, 500);   
-//     })
-// })
+    for(i = 0; i < pokemons[0].length; i++){
+        const mapPokemons = pokemons.map(element => element[i])
+        const card = document.createElement('div')
+        card.classList.add('card')
+        const frente = document.createElement('div')
+        frente.classList.add('frente')
+        const top = document.createElement('div')
+        top.classList.add('top')
+        const id = document.createElement('p')
+        id.textContent = mapPokemons[0] < 10 ? "#000" + mapPokemons[0] : mapPokemons[0] < 100 ? "#00" + mapPokemons[0] : mapPokemons[0] < 1000 ? "#0" + mapPokemons : "#" + mapPokemons
+        const img = document.createElement('img')
+        img.src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'+ mapPokemons[0] +'.png'
+        const bot = document.createElement('div')
+        bot.classList.add('bot')
+        const nome = document.createElement('p')
+        nome.textContent = mapPokemons[1][0].toUpperCase() + mapPokemons[1].slice(1)
+        const infoPokemon = document.createElement('div')
+        infoPokemon.classList.add('infoPokemon')
+        const tipo1 = document.createElement('p')
+        tipo1.textContent = mapPokemons[2][0]
+        tipo1.style.backgroundColor = 'var(--'+ mapPokemons[2][0]+')'
+        tipo1.classList.add('tipo')
+        const altura = document.createElement('p')
+        altura.textContent = "Altura: "+mapPokemons[3] +' m'
+        const peso = document.createElement('p')
+        peso.textContent = "Peso: "+mapPokemons[4] +' kg'
+
+        frente.append(top, bot)
+        top.append(id, img)
+        bot.append(nome, infoPokemon)
+        infoPokemon.appendChild(tipo1)
+        if (mapPokemons[2].length == 2){
+            const tipo2 = document.createElement('p')
+            tipo2.textContent = mapPokemons[2][1]
+            tipo2.classList.add('tipo')
+            tipo2.style.backgroundColor = 'var(--'+ mapPokemons[2][1]+')'
+            infoPokemon.append(tipo2)
+        }else{
+            tipo1.style.gridColumnStart = 1
+            tipo1.style.gridColumnEnd = 3
+        }
+        infoPokemon.append(altura, peso)
+
+        const verso = document.createElement('div')
+        verso.classList.add('verso')
+        const top2 = document.createElement('div')
+        top2.classList.add('top')
+        top2.append(id.cloneNode(true), nome.cloneNode(true), img.cloneNode(true))
+        const bot2 = document.createElement('div')
+        bot2.classList.add('bot')
+        const textoStatus = document.createElement('p')
+        textoStatus.textContent = "STATUS"
+        const stats = document.createElement('div')
+        stats.classList.add('status')
+        const vida = document.createElement('p')
+        vida.textContent = "VID "+mapPokemons[5][0]['base_stat']
+        const atq = document.createElement('p')
+        atq.textContent = "ATQ "+mapPokemons[5][1]['base_stat']
+        const def = document.createElement('p')
+        def.textContent = "DEF "+mapPokemons[5][2]['base_stat']
+        const spa = document.createElement('p')
+        spa.textContent = "SPA "+mapPokemons[5][3]['base_stat']
+        const spd = document.createElement('p')
+        spd.textContent = "SPD "+mapPokemons[5][4]['base_stat']
+        const vel = document.createElement('p')
+        vel.textContent = "VEL "+mapPokemons[5][5]['base_stat']
+        const div1 = document.createElement('div')
+        const div2 = document.createElement('div')
+        const div3 = document.createElement('div')
+        const div4 = document.createElement('div')
+        const div5 = document.createElement('div')
+        const div6 = document.createElement('div')
+        div1.classList.add('statusBar')
+        div1.style.width =  ''+ calculoStatus(mapPokemons[5][0]['base_stat']) +'%'
+        div2.classList.add('statusBar')
+        div2.style.width =  ''+ calculoStatus(mapPokemons[5][1]['base_stat']) +'%'
+        div3.classList.add('statusBar')
+        div3.style.width =  ''+ calculoStatus(mapPokemons[5][2]['base_stat']) +'%'
+        div4.classList.add('statusBar')
+        div4.style.width =  ''+ calculoStatus(mapPokemons[5][3]['base_stat']) +'%'
+        div5.classList.add('statusBar')
+        div5.style.width =  ''+ calculoStatus(mapPokemons[5][4]['base_stat']) +'%'
+        div6.classList.add('statusBar')
+        div6.style.width =  ''+ calculoStatus(mapPokemons[5][5]['base_stat']) +'%'
+        
+        stats.append(vida, div1, atq, div2, def, div3, spa, div4, spd, div5, vel, div6)
+        bot2.append(textoStatus, stats)
+        verso.append(top2, bot2)
+        card.append(frente, verso)
+        fragmento.append(card)
+    }
+    container.append(fragmento)
+    flip()
+}
+
+const metodoCriadorPokemon = async () => {
+    const pokemons = await filtroInfoPokemons()
+    renderPokemon(pokemons)
+}
+
+metodoCriadorPokemon()
 
 function flip(){
-    var card = document.querySelector('.contPkm .card')
-    card.classList.toggle('flip')
-    // // console.log(card)
-    // card.forEach(element => {
-    //     element.addEventListener('click', () =>{
-    //         element.classList.toggle('flip')
-    //     })
-    // });
+    const cards = document.querySelectorAll('.card')
+    console.log(cards)
+    cards.forEach(card => {
+        card.addEventListener('click', () =>{
+            card.classList.toggle('flip')
+        })
+    });
 }
