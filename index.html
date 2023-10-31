@@ -11,78 +11,41 @@
 <body>
     <h3 class="fixo">Site feito para fins educacionais, Todos os direitos reservados a Nintendo e Pokemon Company</h3>
     <header class="header">
-        <div>
-
-        </div>
+        <img src="imagens/pokemonTitle.png" alt="Pokemon">
+        <img src="imagens/luxray.png" alt="Pokemon" class="luxray">
+        <ul>
+            <li><a href="https://github.com/JoaoVictor-A-F-R" target="_blank"><i class="bi bi-github"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/joão-victor-a-f-ribeiro-188a0a175/" target="_blank"><i class="bi bi-linkedin"></i></a></li>
+        </ul>
     </header>
     <main class="main">
         <div class="pesquisa">
             <input class="texto" type="text" placeholder="Digite nome ou id do Pokemon">
-            <button class="botao"><i class="bi bi-search"></i></button>
+            <button class="botao" onclick="buscaPokemon()"><i class="bi bi-search"></i></button>
         </div>
         <div class="tipos">
-            <button value="--normal">Normal</button>
-            <button value="--fire">Fogo</button>
-            <button value="--water">Água</button>
-            <button value="--grass">Planta</button>
-            <button value="--flying">Voador</button>
-            <button value="--poison">Veneno</button>
-            <button value="--electric">Elétrico</button>
-            <button value="--psychic">Psíquico</button>
-            <button value="--ground">Terrra</button>
-            <button value="--steel">Metal</button>
-            <button value="--fighting">Lutador</button>
-            <button value="--dragon">Dragão</button>
-            <button value="--bug">Inseto</button>
-            <button value="--ice">Gelo</button>
-            <button value="--ghost">Fantasma</button>
-            <button value="--dark">Sombrio</button>
-            <button value="--fairy">Fada</button>
-            <button value="--rock">Pedra</button>
+            <button value="normal">Normal</button>
+            <button value="fire">Fogo</button>
+            <button value="water">Água</button>
+            <button value="grass">Planta</button>
+            <button value="flying">Voador</button>
+            <button value="poison">Veneno</button>
+            <button value="electric">Elétrico</button>
+            <button value="psychic">Psíquico</button>
+            <button value="ground">Terrra</button>
+            <button value="steel">Metal</button>
+            <button value="fighting">Lutador</button>
+            <button value="dragon">Dragão</button>
+            <button value="bug">Inseto</button>
+            <button value="ice">Gelo</button>
+            <button value="ghost">Fantasma</button>
+            <button value="dark">Sombrio</button>
+            <button value="fairy">Fada</button>
+            <button value="rock">Pedra</button>
         </div>
-        <div class="contPkm">
-            <!-- <div class="card">
-                <div class="frente">
-                    <div class="top">
-                        <p>#0001</p>
-                        <img src="imagens/pokebola.png" alt="">
-                    </div>
-                    <div class="bot">
-                        <p>Charrizard</p>
-                        <div class="infoPokemon">
-                            <p class="tipo">Fantasma</p>
-                            <p class="tipo">Psiquico</p>
-                            <p>Altura : 10 m</p>
-                            <p>Peso : 800 kg</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="verso">
-                    <div class="top">
-                        <p>#0001</p>
-                        <p>Charizard</p>
-                        <img src="imagens/pokebola.png" alt="">
-                    </div>
-                    <div class="bot">
-                        <p>STATUS</p>
-                        <div class="status">
-                            <p>VID 50</p>
-                            <div class="statusBar"></div>
-                            <p>ATQ 140</p>
-                            <div class="statusBar"></div>
-                            <p>DEF 5</p>
-                            <div class="statusBar"></div>
-                            <p>SPA 35</p>
-                            <div class="statusBar"></div>
-                            <p>SPD 80</p>
-                            <div class="statusBar"></div>
-                            <p>VEL 15</p>
-                            <div class="statusBar"></div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-        </div>
+        <div class="contPkm"></div>
+        <button class="btSubir" onclick="subir()"><i class="bi bi-arrow-up"></i></button>
+        <button class="maisPkm" onclick="maisPokemon()">Mais Pokemons</button>
     </main>
     <footer class="footer">
 
