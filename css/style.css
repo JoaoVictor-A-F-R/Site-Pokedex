@@ -20,14 +20,14 @@
 }
 @keyframes luxray {
     0%{
-        top: 100px;
+        top: 110px;
     }
     50%{
-        top: 120px;
+        top: 130px;
     
     }
     100%{
-        top: 100px;
+        top: 110px;
     }
 }
 *,::after,::before{
@@ -36,6 +36,19 @@
 }
 body{
     background-color: #111;
+}
+body::-webkit-scrollbar {
+    width: 8px;               
+}
+body::-webkit-scrollbar-track {
+    background: transparent;
+}
+body::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 5px;
+}
+body::-webkit-scrollbar-thumb:hover{
+    background-color: #777;
 }
 .fixo{
     text-align: center;
@@ -100,7 +113,6 @@ body{
 }
 .pesquisa input{
     padding: 5px 35px;
-    width: 400px;
     background-color: transparent;
     border: none;
     border-right: 1px solid #aaa;
@@ -282,6 +294,18 @@ body{
     font-size: 24px;
     transition: 0.15s;
 }
+.footer{
+    padding: 35px 5px ;
+    border-top: 2px solid #ddd;
+}
+.footer p{
+    font-size: 20px;
+    text-align: center;
+    color: #ddd;
+}
+.footer p:first-child{
+    margin-bottom: 10px;
+}
 @media (max-width: 1180px) {
     .contPkm{
         grid-template-columns: repeat(3, 1fr);
@@ -298,9 +322,55 @@ body{
         grid-template-columns: repeat(2, 1fr);
     }
     .tipos{
-        grid-template-columns: repeat(6, 1fr);
-    }   
+        max-width: 80%;
+        padding: 5px 0;
+        grid-template-columns: repeat(9, 1fr);
+        overflow-x: auto;
+        justify-content: initial;
+    }
+    .tipos::-webkit-scrollbar {
+        height: 8px;             
+    }
+    .tipos::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    .tipos::-webkit-scrollbar-thumb {
+        background-color: #555;
+        border-radius: 5px;
+    } 
+    .tipos::-webkit-scrollbar-thumb:hover{
+        background-color: #777;
+    }
     .luxray{
         width: 200px !important;
+    }
+}
+@media (max-width: 600px) {
+    .header{
+        padding: 30px 0;
+    }
+    .contPkm{
+        grid-template-columns: 1fr;
+    }
+    .luxray{
+        position: absolute;
+        width: 175px !important;
+    }
+    .pesquisa input{
+        max-width: 90%;
+    }
+    .btSubir{
+        position: fixed;
+        bottom: 70px;
+        right: 10px;
+    
+        width: 40px;
+        height: 40px;
+        background-color: rgb(221, 16, 16);
+        border: none;
+        border-radius: 50%;
+        transition: .5s ease;
+        transform: scale(0);
+        cursor: pointer;
     }
 }
