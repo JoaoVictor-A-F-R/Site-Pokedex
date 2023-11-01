@@ -360,17 +360,9 @@ body::-webkit-scrollbar-thumb:hover{
         max-width: 90%;
     }
     .btSubir{
-        position: fixed;
-        bottom: 70px;
+        bottom: 135px;
         right: 10px;
-    
         width: 40px;
         height: 40px;
-        background-color: rgb(221, 16, 16);
-        border: none;
-        border-radius: 50%;
-        transition: .5s ease;
-        transform: scale(0);
-        cursor: pointer;
     }
 }
